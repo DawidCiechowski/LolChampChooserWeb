@@ -70,7 +70,7 @@ export const Chooser = () => {
             <h1 className='font-bold '>{champion}</h1>
         </div>
         <div className='items-center justify-center py-8'>
-            <div className="inline-block px-2 align-top">
+            <div className="md:inline-block px-2 py-2 md:align-top">
                 <button className="bg-blue-500 py-4 w-48 h-16 hover:bg-blue-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={() => setChampion(() => {
                     const champ = filteredChampions.length === 0 ? randomChampion() : randomChampion(filteredChampions)
                     const newQueue = lastChamps;
@@ -83,10 +83,10 @@ export const Chooser = () => {
                     return champ
                 })}>Roll a Champion!</button>
             </div>
-            <div className="inline-block px-2">
+            <div className="md:inline-block px-2 py-2 md:align-top">
                 <button className="bg-green-500 w-48 h-16 hover:bg-green-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={handle}>Increase Number of Champs</button>
             </div>
-            <div className="inline-block px-2">
+            <div className="md:inline-block px-2 py-2 md:align-top">
                 <button className="bg-red-500 w-48 h-16 hover:bg-red-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={handle2}>Decrease Number of Champs</button>
             </div>
         </div>
@@ -95,9 +95,9 @@ export const Chooser = () => {
             <h2>{`Last ${noOfChamps} Champs`}</h2>
         </div>
         <div className='border-4 font-bold text-xl py-5 m-5 rounded-md justify-center items-center flex w-1/2 border-rose-500'>
-            <ul className="ml-auto flex items-center justify-center w-screen">
+            <ul className="ml-auto flex items-center justify-center md:w-screen">
             {lastChamps.allElements.map(item => (
-            <li className="inline-block">
+            <li className="xl:inline-block sm:flex">
                 <div>
                     {
                         <img src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championSplash(item)}_1.jpg`} alt="placeholder" />
