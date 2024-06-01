@@ -101,7 +101,7 @@ export const Chooser = () => {
             <div className='border-2 text-pretty text-bold border-rose-500 py-5 text-white rounded-lg text-2xl font-bold font-serif w-64 flex justify-center items-center bg-rose-500'>
                 <h2>{`Last ${noOfChamps} Champs`}</h2>
             </div>
-            <div className='border-4 font-bold text-xl py-5 m-5 rounded-md justify-center items-center flex w-1/2 border-rose-500'>
+            <div className={lastChamps.allElements.length !== 0 ? 'border-4 font-bold text-xl py-5 m-5 rounded-md justify-center items-center flex w-1/2 border-rose-500' : ''}>
                 <ul className="ml-auto md:flex items-center justify-center md:w-screen">
                 {lastChamps.allElements.map(item => (
                 <li className="inline-block">
