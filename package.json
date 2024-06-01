@@ -1,5 +1,6 @@
 {
   "name": "champion-chooser",
+  "homepage": "https://dawidciechowski.github.io/LolChampChooserWeb/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
