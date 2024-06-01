@@ -15,7 +15,7 @@ const randomChampion = (filtered?: Array<string>): string => {
 
 
 export const Chooser = () => {
-    const defaultVal = 'CLICK A BUTTON TO CHOOSE A CHAMPION';
+    const defaultVal = 'Your Champion!';
     const [champion, setChampion] = useState(defaultVal);
     const [lastChamps, setlastChamps] = useState<Queue<string>>(new Queue());
     const [filteredChampions, setFilteredChampions] = usePersistState<string[]>([], 'fileteredChampions');
@@ -74,8 +74,9 @@ export const Chooser = () => {
     }
     return (
         <div className='min-h-screen w-screen bg-black flex text-white flex-col items-center justify-center border-solid border-2'>
-            <div className='items-center justify-center text-7xl py-10'>
-                <h1 className='font-bold '>{champion}</h1>
+            <div className='flex flex-col items-center justify-center text-7xl py-10 w-fit'>
+                <h1 className="font-bold flex items-center justify-center pb-16">LoL Random<h1 className="text-pink-500 pl-5">Champion Picker</h1></h1>
+                <h3 className=''>{champion}</h3>
             </div>
             <div className='items-center justify-center py-8'>
                 <div className="md:inline-block px-2 py-2 md:align-top">
@@ -145,6 +146,8 @@ export const Chooser = () => {
                 ))}
                 </ol>
             </Collapsible>
+
+            <footer className="font-bold flex"><p className="text-pink-500 font-bold italic pr-1">Created by</p> Dawid Ciechowski 2024</footer>
         </div>
     )
 }
