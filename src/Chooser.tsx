@@ -74,8 +74,8 @@ export const Chooser = () => {
     }
     return (
         <div className='min-h-screen w-screen bg-black flex text-white flex-col items-center justify-center border-solid border-2'>
-            <div className='flex flex-col items-center justify-center text-7xl py-10 w-fit'>
-                <h1 className="font-bold flex items-center justify-center pb-16">LoL Random<h1 className="text-pink-500 pl-5">Champion Picker</h1></h1>
+            <div className='flex flex-col items-center justify-center pb-10 md:pt-48 w-fit text-xl md:text-5xl'>
+                <h1 className="font-bold flex items-center justify-center pb-16">LoL Random<h1 className="text-pink-500 pl-1 md:pl-5">Champion Picker</h1></h1>
                 <h3 className=''>{champion}</h3>
             </div>
             <div className='items-center justify-center py-8'>
