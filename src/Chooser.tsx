@@ -38,16 +38,15 @@ export const Chooser = () => {
         </div>
         <div className='items-center justify-center py-10'>
             <button className="bg-blue-500 w-36 h-12 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl" onClick={() => setChampion(() => {
+            const champ = filteredChampions.length === 0 ? randomChampion() : randomChampion(filteredChampions)
             const newQueue = lastThreeChamps;
-            if (champion !== "" && champion !== defaultVal) {
-                if (newQueue.length === 3) {
+            if (newQueue.length === 3) {
                 newQueue.dequeue();
-                }
-                newQueue.enqueue(champion)
-                setLastThreeChamps(newQueue);
-            } 
+            }
+            newQueue.enqueue(champ)
+            setLastThreeChamps(newQueue);
 
-            return filteredChampions.length === 0 ? randomChampion() : randomChampion(filteredChampions)
+            return champ
             })}>CLICK ME!</button>
         </div>
 
