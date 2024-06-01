@@ -84,7 +84,7 @@ Morgana
 Naafiri
 Nami
 Nasus
-Nautilius
+Nautilus
 Neeko
 Nidalee
 Nilah

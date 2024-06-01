@@ -12,7 +12,7 @@ module.exports = {
         }
       },
       animation: {
-        "appear": 'lol 2s ease-in-out'
+        "appear": 'lol 8s ease-in-out'
       }
     },
   },
