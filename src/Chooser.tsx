@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Queue } from "./queue";
 import { champions } from "./constants";
 import { Collapsible } from "./Collapsible";
+import usePersistState from "./usePersistState";
 
 const randomChampion = (filtered?: Array<string>): string => {
   if (filtered?.length === 0) {
@@ -17,7 +18,8 @@ export const Chooser = () => {
     const defaultVal = 'CLICK A BUTTON TO CHOOSE A CHAMPION';
     const [champion, setChampion] = useState(defaultVal);
     const [lastThreeChamps, setLastThreeChamps] = useState<Queue<string>>(new Queue());
-    const [filteredChampions, setFilteredChampions] = useState<string[]>([]);
+    const [filteredChampions, setFilteredChampions] = usePersistState<string[]>(champions, 'fileteredChampions');
+    console.log(filteredChampions)
 
     const handleClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         let updatedList = [...filteredChampions];
@@ -67,7 +69,7 @@ export const Chooser = () => {
                 <div key={index} className='text-xl'>
                 <div className='flex border-4 rounded-md my-2'>
                     <div className='px-3'>
-                    <input type="checkbox" value={champ} onChange={handleClick} />
+                        {filteredChampions.includes(champ) ? <input type="checkbox" value={champ} onChange={handleClick} checked={true}/> : <input type="checkbox" value={champ} onChange={handleClick} />}
                     </div>
                     <div>
                     <p>{champ}</p>
