@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.9e7c2f60.css",
-    "main.js": "/static/js/main.f7f93253.js",
-    "index.html": "/index.html",
-    "main.9e7c2f60.css.map": "/static/css/main.9e7c2f60.css.map",
-    "main.f7f93253.js.map": "/static/js/main.f7f93253.js.map"
+    "main.css": "/LolChampChooserWeb/static/css/main.9e7c2f60.css",
+    "main.js": "/LolChampChooserWeb/static/js/main.6a6c5345.js",
+    "index.html": "/LolChampChooserWeb/index.html",
+    "main.9e7c2f60.css.map": "/LolChampChooserWeb/static/css/main.9e7c2f60.css.map",
+    "main.6a6c5345.js.map": "/LolChampChooserWeb/static/js/main.6a6c5345.js.map"
   },
   "entrypoints": [
     "static/css/main.9e7c2f60.css",
-    "static/js/main.f7f93253.js"
+    "static/js/main.6a6c5345.js"
   ]
 }
