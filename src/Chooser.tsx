@@ -80,7 +80,7 @@ export const Chooser = () => {
             </div>
             <div className='items-center justify-center py-8'>
                 <div className="md:inline-block px-2 py-2 md:align-top">
-                    <button className="bg-blue-500 py-4 w-48 h-16 hover:bg-blue-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={() => setChampion(() => {
+                    <button className="hover:animeate-pulse bg-blue-500 py-4 w-48 h-16 hover:bg-blue-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={() => setChampion(() => {
                         const champ = filteredChampions.length === 0 ? randomChampion() : randomChampion(filteredChampions)
                         const newQueue = lastChamps;
                         if (newQueue.length === noOfChamps) {
@@ -104,7 +104,7 @@ export const Chooser = () => {
                 <h2>{`Last ${noOfChamps} Champs`}</h2>
             </div>
             <div className={lastChamps.allElements.length !== 0 ? 'border-4 font-bold text-xl py-5 m-5 rounded-md justify-center items-center flex w-1/2 border-rose-500' : ''}>
-                <ul className="ml-auto md:flex items-center justify-center md:w-screen">
+                <ul className="ml-auto md:flex items-center justify-center md:w-screen animate-appear">
                 {lastChamps.allElements.map(item => (
                 <li className="inline-block">
                     <div>
