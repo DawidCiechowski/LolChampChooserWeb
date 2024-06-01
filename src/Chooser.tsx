@@ -31,6 +31,19 @@ export const Chooser = () => {
 
         setFilteredChampions(updatedList);
     }
+
+    const championSplash = (item: string) => {
+        item = item.replace(/\s/g, "").replace("'","");
+        const exceptions = new Map<string, string>([
+            ["Wukong", "MonkeyKing"],
+            ["KaiSa", "Kaisa"],
+            ["KhaZix", "Khazix"],
+            ["BelVeth", "Belveth"],
+            ["VelKoz", "Velkoz"]
+        ]);
+
+        return exceptions.get(item) !== undefined ? exceptions.get(item) : item
+    }
     return (
         <div className='h-fit w-screen bg-black flex text-white flex-col items-center justify-center border-solid border-2'>
         <div className='items-center justify-center text-7xl py-10'>
@@ -53,10 +66,16 @@ export const Chooser = () => {
         <div className='border-2 text-pretty text-bold border-rose-500 py-5 text-white rounded-lg text-2xl font-bold font-serif w-64 flex justify-center items-center bg-rose-500'>
             <h2>Last Three Champs</h2>
         </div>
-        <div className='border-4 font-bold text-xl py-5 m-5 rounded-md w-36 justify-center items-center flex border-rose-500'>
-            <ul>
+        <div className='border-4 font-bold text-xl py-5 m-5 rounded-md justify-center items-center flex w-1/2 border-rose-500'>
+            <ul className="ml-auto flex items-center justify-center w-screen">
             {lastThreeChamps.allElements.map(item => (
-            <li>{item}</li>
+            <li className="inline-block">
+                <div>
+                    {
+                        <img src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championSplash(item)}_1.jpg`} alt="placeholder" />
+                    }
+                </div>
+            </li>
             ))}
         </ul>
         </div>

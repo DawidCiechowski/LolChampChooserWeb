@@ -88,7 +88,7 @@ Nautilius
 Neeko
 Nidalee
 Nilah
-Nocture
+Nocturne
 Nunu
 Olaf
 Orianna
