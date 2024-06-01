@@ -95,9 +95,9 @@ export const Chooser = () => {
             <h2>{`Last ${noOfChamps} Champs`}</h2>
         </div>
         <div className='border-4 font-bold text-xl py-5 m-5 rounded-md justify-center items-center flex w-1/2 border-rose-500'>
-            <ul className="ml-auto flex items-center justify-center md:w-screen">
+            <ul className="ml-auto md:flex items-center justify-center md:w-screen">
             {lastChamps.allElements.map(item => (
-            <li className="xl:inline-block sm:flex">
+            <li className="inline-block">
                 <div>
                     {
                         <img src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championSplash(item)}_1.jpg`} alt="placeholder" />
