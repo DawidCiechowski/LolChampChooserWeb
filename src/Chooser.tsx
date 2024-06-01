@@ -116,8 +116,8 @@ export const Chooser = () => {
             </div>
 
             <Collapsible>
-                <div className="">
-                    <input type="text" placeholder="Search Champion..." className="text-black" value={search} onChange={searchHandler}/>
+                <div className="w-fit">
+                    <input type="text" placeholder="Search Champion..." className="text-black w-full border-4 rounded-md" value={search} onChange={searchHandler}/>
                 </div>
                 <ol>
                 {champions.filter((champ) => {
@@ -128,6 +128,8 @@ export const Chooser = () => {
                     if (champ.toLowerCase().includes(search.toLowerCase())) {
                         return champ;
                     }
+
+                    return null;
                 }).map((champ, index) => (
                     <div key={index} className='text-xl'>
                     <div className='flex border-4 rounded-md my-2'>
