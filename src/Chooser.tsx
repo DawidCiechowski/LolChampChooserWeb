@@ -17,8 +17,9 @@ const randomChampion = (filtered?: Array<string>): string => {
 export const Chooser = () => {
     const defaultVal = 'CLICK A BUTTON TO CHOOSE A CHAMPION';
     const [champion, setChampion] = useState(defaultVal);
-    const [lastThreeChamps, setLastThreeChamps] = useState<Queue<string>>(new Queue());
+    const [lastChamps, setlastChamps] = useState<Queue<string>>(new Queue());
     const [filteredChampions, setFilteredChampions] = usePersistState<string[]>([], 'fileteredChampions');
+    const [noOfChamps, setNoOfChamps] = usePersistState<number>(4, 'noOfChamps');
 
     const handleClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         let updatedList = [...filteredChampions];
@@ -39,36 +40,63 @@ export const Chooser = () => {
             ["KaiSa", "Kaisa"],
             ["KhaZix", "Khazix"],
             ["BelVeth", "Belveth"],
-            ["VelKoz", "Velkoz"]
+            ["VelKoz", "Velkoz"],
+            ["RenataGlasc", "Renata"],
+            ["LeBlanc", "Leblanc"]
         ]);
 
         return exceptions.get(item) !== undefined ? exceptions.get(item) : item
+    }
+
+    const handle = () => {
+        if (noOfChamps >= 10) {
+            setNoOfChamps(10);
+            return;
+        }
+        setNoOfChamps(noOfChamps + 1);
+    }
+
+    const handle2 = () => {
+        if (noOfChamps === 1) return;
+        const newQueue = lastChamps;
+        setNoOfChamps(noOfChamps - 1);
+        if (newQueue.length >= noOfChamps - 1 ) {
+            newQueue.dequeue();
+        }
     }
     return (
         <div className='h-fit w-screen bg-black flex text-white flex-col items-center justify-center border-solid border-2'>
         <div className='items-center justify-center text-7xl py-10'>
             <h1 className='font-bold '>{champion}</h1>
         </div>
-        <div className='items-center justify-center py-10'>
-            <button className="bg-blue-500 w-36 h-12 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl" onClick={() => setChampion(() => {
-            const champ = filteredChampions.length === 0 ? randomChampion() : randomChampion(filteredChampions)
-            const newQueue = lastThreeChamps;
-            if (newQueue.length === 3) {
-                newQueue.dequeue();
-            }
-            newQueue.enqueue(champ)
-            setLastThreeChamps(newQueue);
+        <div className='items-center justify-center py-8'>
+            <div className="inline-block px-2 align-top">
+                <button className="bg-blue-500 py-4 w-48 h-16 hover:bg-blue-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={() => setChampion(() => {
+                    const champ = filteredChampions.length === 0 ? randomChampion() : randomChampion(filteredChampions)
+                    const newQueue = lastChamps;
+                    if (newQueue.length === noOfChamps) {
+                        newQueue.dequeue();
+                    }
+                    newQueue.enqueue(champ)
+                    setlastChamps(newQueue);
 
-            return champ
-            })}>CLICK ME!</button>
+                    return champ
+                })}>Roll a Champion!</button>
+            </div>
+            <div className="inline-block px-2">
+                <button className="bg-green-500 w-48 h-16 hover:bg-green-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={handle}>Increase Number of Champs</button>
+            </div>
+            <div className="inline-block px-2">
+                <button className="bg-red-500 w-48 h-16 hover:bg-red-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={handle2}>Decrease Number of Champs</button>
+            </div>
         </div>
 
         <div className='border-2 text-pretty text-bold border-rose-500 py-5 text-white rounded-lg text-2xl font-bold font-serif w-64 flex justify-center items-center bg-rose-500'>
-            <h2>Last Three Champs</h2>
+            <h2>{`Last ${noOfChamps} Champs`}</h2>
         </div>
         <div className='border-4 font-bold text-xl py-5 m-5 rounded-md justify-center items-center flex w-1/2 border-rose-500'>
             <ul className="ml-auto flex items-center justify-center w-screen">
-            {lastThreeChamps.allElements.map(item => (
+            {lastChamps.allElements.map(item => (
             <li className="inline-block">
                 <div>
                     {
