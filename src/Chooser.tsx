@@ -19,7 +19,7 @@ export const Chooser = () => {
     const [champion, setChampion] = useState(defaultVal);
     const [lastChamps, setlastChamps] = useState<Queue<string>>(new Queue());
     const [filteredChampions, setFilteredChampions] = usePersistState<string[]>([], 'fileteredChampions');
-    const [noOfChamps, setNoOfChamps] = usePersistState<number>(4, 'noOfChamps');
+    const [noOfChamps, setNoOfChamps] = usePersistState<number>(3, 'noOfChamps');
 
     const handleClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         let updatedList = [...filteredChampions];
