@@ -45,6 +45,7 @@ export const Chooser = () => {
             ["RenataGlasc", "Renata"],
             ["LeBlanc", "Leblanc"],
             ["ChoGath", "Chogath"],
+            ["Dr.Mundo", "DrMundo"]
         ]);
 
         return exceptions.get(item) !== undefined ? exceptions.get(item) : item
