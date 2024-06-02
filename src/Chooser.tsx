@@ -35,22 +35,18 @@ export const Chooser = () => {
         setFilteredChampions(updatedList);
     }
 
+    const sliderHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const sliderValue = event.target.valueAsNumber;
+        if( sliderValue< noOfChamps) {
+            const newQueue = lastChamps;
+            while (newQueue.allElements.length !== sliderValue) {
+                newQueue.dequeue();
+            }
 
-    const handle = () => {
-        if (noOfChamps >= 10) {
-            setNoOfChamps(10);
-            return;
+            setlastChamps(newQueue);
         }
-        setNoOfChamps(noOfChamps + 1);
-    }
 
-    const handle2 = () => {
-        if (noOfChamps === 1) return;
-        const newQueue = lastChamps;
-        setNoOfChamps(noOfChamps - 1);
-        if (newQueue.length >= noOfChamps - 1 ) {
-            newQueue.dequeue();
-        }
+        setNoOfChamps(sliderValue);
     }
 
 
@@ -58,9 +54,12 @@ export const Chooser = () => {
         setSearch(event.target.value);
     }
     return (
-        <div className='min-h-screen w-screen bg-black flex text-white flex-col items-center justify-center border-solid border-2 no-scrollbar overflow-y-auto'>
+        <div className='min-h-screen w-screen bg-black flex text-white flex-col items-center justify-center border-double border-8 scrollbar-hide overflow-y-auto'>
             <div className='flex flex-col items-center justify-center pb-10 md:pt-36 w-fit'>
-                <h1 className="font-bold flex items-center justify-center pb-16 text-2xl md:text-5xl">LoL Random<h1 className="text-pink-500 pl-1 md:pl-5">Champion Picker</h1></h1>
+                <div className="font-bold flex justify-center items-center text-2xl md:text-5xl pb-16">
+                    <h1 className="  ">LoL Random</h1>
+                    <h1 className="text-pink-500 md:pl-5">Champion Picker</h1>
+                </div>
                 <h3 className='text-4xl md:text-6xl font-extrabold'>{champion}</h3>
             </div>
             <div className='items-center justify-center py-8'>
@@ -77,18 +76,17 @@ export const Chooser = () => {
                         return champ
                     })}>Roll a Champion!</button>
                 </div>
-                <div className="md:inline-block px-2 py-2 md:align-top">
-                    <button className="bg-green-500 w-48 h-16 hover:bg-green-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={handle}>Increase Number of Champs</button>
-                </div>
-                <div className="md:inline-block px-2 py-2 md:align-top">
-                    <button className="bg-red-500 w-48 h-16 hover:bg-red-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={handle2}>Decrease Number of Champs</button>
+
+                <div className="pt-4 text-white font-semibold text-2xl">
+                    <label htmlFor="lastChampsSlider" className="block mb-2 text-md font-medium text-white">Number of Champs</label>
+                    <input className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-pink-500" id="lastChampsSlider" type="range" min={1} max={10} onChange={sliderHandler} step={1} defaultValue={noOfChamps} />
                 </div>
             </div>
 
-            <div className='border-2 text-pretty text-bold border-rose-500 py-5 text-white rounded-lg text-2xl font-bold font-serif w-64 flex justify-center items-center bg-rose-500'>
-                <h2>{`Last ${noOfChamps} Champs`}</h2>
+            <div className='border-2 text-pretty text-bold border-rose-500 py-5 text-white rounded-lg text-2xl font-bold font-serif w- flex justify-center items-center bg-rose-500'>
+                <h2>{`Last ${noOfChamps > 1 ? noOfChamps : ''} Champ${noOfChamps > 1 ? 's' : ''}`}</h2>
             </div>
-            <div className={lastChamps.allElements.length !== 0 ? 'border-4 font-bold text-xl py-5 m-5 rounded-md justify-center flex items-center animate-appear h-1/8 w-1/2 border-rose-500' : ''}>
+            <div className={lastChamps.allElements.length !== 0 ? 'border-4 font-bold text-xl py-5 m-5 rounded-md justify-center flex items-center animate-appear h-1/6 w-fit border-rose-500' : ''}>
                 <ul className="ml-auto md:flex items-center justify-center h-fit w-fit">
                 {lastChamps.allElements.reverse().map(item => (
                     <LastChampion key={item} champ={item} />
