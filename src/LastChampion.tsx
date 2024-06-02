@@ -27,7 +27,7 @@ export default function LastChampion(props: {champ: string}) {
         <li className="inline-block">
             <div className="">
                 {
-                    <img className="animate-appear" src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championSplash(props.champ)}_1.jpg`} alt="placeholder" onLoad={() =>setIsLoaded(true)} style={isLoaded ? {} : {display: 'none'}} />
+                    <img className="animate-appear" src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championSplash(props.champ)}_1.jpg`} alt="placeholder" onLoad={() =>setIsLoaded(true)} style={isLoaded ? {} : {opacity: '0%'}} />
                 }
             </div>
         </li>
