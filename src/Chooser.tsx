@@ -90,7 +90,7 @@ export const Chooser = () => {
             </div>
             <div className={lastChamps.allElements.length !== 0 ? 'border-4 font-bold text-xl py-5 m-5 rounded-md justify-center flex items-center animate-appear h-1/8 w-1/2 border-rose-500' : ''}>
                 <ul className="ml-auto md:flex items-center justify-center h-fit w-fit">
-                {lastChamps.allElements.map(item => (
+                {lastChamps.allElements.reverse().map(item => (
                     <LastChampion key={item} champ={item} />
                 ))}
             </ul>
