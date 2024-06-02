@@ -37,7 +37,7 @@ export const Chooser = () => {
 
     const sliderHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const sliderValue = event.target.valueAsNumber;
-        if( sliderValue< noOfChamps) {
+        if( sliderValue < lastChamps.allElements.length) {
             const newQueue = lastChamps;
             while (newQueue.allElements.length !== sliderValue) {
                 newQueue.dequeue();
