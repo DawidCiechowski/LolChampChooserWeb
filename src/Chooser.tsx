@@ -3,6 +3,7 @@ import { Queue } from "./queue";
 import { champions } from "./constants";
 import { Collapsible } from "./Collapsible";
 import usePersistState from "./usePersistState";
+import LastChampion from "./LastChampion";
 
 const randomChampion = (filtered?: Array<string>): string => {
   if (filtered?.length === 0) {
@@ -34,22 +35,6 @@ export const Chooser = () => {
         setFilteredChampions(updatedList);
     }
 
-    const championSplash = (item: string) => {
-        item = item.replace(/\s/g, "").replace("'","");
-        const exceptions = new Map<string, string>([
-            ["Wukong", "MonkeyKing"],
-            ["KaiSa", "Kaisa"],
-            ["KhaZix", "Khazix"],
-            ["BelVeth", "Belveth"],
-            ["VelKoz", "Velkoz"],
-            ["RenataGlasc", "Renata"],
-            ["LeBlanc", "Leblanc"],
-            ["ChoGath", "Chogath"],
-            ["Dr.Mundo", "DrMundo"]
-        ]);
-
-        return exceptions.get(item) !== undefined ? exceptions.get(item) : item
-    }
 
     const handle = () => {
         if (noOfChamps >= 10) {
@@ -73,20 +58,20 @@ export const Chooser = () => {
         setSearch(event.target.value);
     }
     return (
-        <div className='min-h-screen w-screen bg-black flex text-white flex-col items-center justify-center border-solid border-2'>
+        <div className='min-h-screen w-screen bg-black flex text-white flex-col items-center justify-center border-solid border-2 no-scrollbar overflow-y-auto'>
             <div className='flex flex-col items-center justify-center pb-10 md:pt-48 w-fit text-xl md:text-5xl'>
                 <h1 className="font-bold flex items-center justify-center pb-16">LoL Random<h1 className="text-pink-500 pl-1 md:pl-5">Champion Picker</h1></h1>
                 <h3 className=''>{champion}</h3>
             </div>
             <div className='items-center justify-center py-8'>
                 <div className="md:inline-block px-2 py-2 md:align-top">
-                    <button className="hover:animeate-pulse bg-blue-500 py-4 w-48 h-16 hover:bg-blue-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={() => setChampion(() => {
+                    <button className="hover:animeate-spin bg-blue-500 py-4 w-48 h-16 hover:bg-blue-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={() => setChampion(() => {
                         const champ = filteredChampions.length === 0 ? randomChampion() : randomChampion(filteredChampions)
                         const newQueue = lastChamps;
                         if (newQueue.length === noOfChamps) {
                             newQueue.dequeue();
                         }
-                        newQueue.enqueue(champ)
+                        newQueue.enqueue(champ);
                         setlastChamps(newQueue);
 
                         return champ
@@ -103,16 +88,10 @@ export const Chooser = () => {
             <div className='border-2 text-pretty text-bold border-rose-500 py-5 text-white rounded-lg text-2xl font-bold font-serif w-64 flex justify-center items-center bg-rose-500'>
                 <h2>{`Last ${noOfChamps} Champs`}</h2>
             </div>
-            <div className={lastChamps.allElements.length !== 0 ? 'border-4 font-bold text-xl py-5 m-5 rounded-md justify-center items-center flex w-1/2 border-rose-500' : ''}>
-                <ul className="ml-auto md:flex items-center justify-center md:w-screen animate-appear">
+            <div className={lastChamps.allElements.length !== 0 ? 'border-4 font-bold text-xl py-5 m-5 rounded-md justify-center items-center animate-appear flex w-1/2 border-rose-500' : ''}>
+                <ul className="ml-auto md:flex items-center justify-center md:w-screen">
                 {lastChamps.allElements.map(item => (
-                <li className="inline-block">
-                    <div>
-                        {
-                            <img src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championSplash(item)}_1.jpg`} alt="placeholder" />
-                        }
-                    </div>
-                </li>
+                    <LastChampion key={item} champ={item} />
                 ))}
             </ul>
             </div>
@@ -134,14 +113,14 @@ export const Chooser = () => {
                     return null;
                 }).map((champ, index) => (
                     <div key={index} className='text-xl'>
-                    <div className='flex border-4 rounded-md my-2'>
-                        <div className='px-3'>
-                            {filteredChampions.includes(champ) ? <input type="checkbox" value={champ} onChange={handleClick} checked={true}/> : <input type="checkbox" value={champ} onChange={handleClick} />}
+                        <div className='flex border-4 rounded-md my-2'>
+                            <div className='px-3'>
+                                {filteredChampions.includes(champ) ? <input type="checkbox" value={champ} onChange={handleClick} checked={true}/> : <input type="checkbox" value={champ} onChange={handleClick} />}
+                            </div>
+                            <div>
+                            <p>{champ}</p>
+                            </div>
                         </div>
-                        <div>
-                        <p>{champ}</p>
-                        </div>
-                    </div>
                     </div>
                 ))}
                 </ol>

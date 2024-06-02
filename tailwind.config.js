@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -12,9 +14,21 @@ module.exports = {
         }
       },
       animation: {
-        "appear": 'lol 8s ease-in-out'
+        "appear": 'lol 2s ease-in'
       }
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function({addUtilities}) {
+      addUtilities({
+        '.no-scrollbar::-webkit-scrollbar': {
+          'display': 'none'
+        },
+        '.no-scrollbar': {
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+        }
+      })
+    })
+  ],
 }
