@@ -24,8 +24,8 @@ export default function LastChampion(props: {champ: string}) {
     const [isLoaded, setIsLoaded] = useState(false);
 
     return (
-        <li className="inline-block">
-            <div className="">
+        <li className="inline-block w-full">
+            <div className="justify-center items-center flex">
                 {
                     <img className="animate-appear" src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championSplash(props.champ)}_1.jpg`} alt="placeholder" onLoad={() =>setIsLoaded(true)} style={isLoaded ? {} : {opacity: '0%'}} />
                 }

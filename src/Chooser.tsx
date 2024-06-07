@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Queue } from "./queue";
+import {  useState } from "react";
+import { useQueue } from "@uidotdev/usehooks";
 import { champions } from "./constants";
 import { Collapsible } from "./Collapsible";
 import usePersistState from "./usePersistState";
@@ -18,10 +18,10 @@ const randomChampion = (filtered?: Array<string>): string => {
 export const Chooser = () => {
     const defaultVal = 'Your Champion!';
     const [champion, setChampion] = useState(defaultVal);
-    const [lastChamps, setlastChamps] = useState<Queue<string>>(new Queue());
     const [filteredChampions, setFilteredChampions] = usePersistState<string[]>([], 'fileteredChampions');
     const [noOfChamps, setNoOfChamps] = usePersistState<number>(3, 'noOfChamps');
     const [search, setSearch] = useState('');
+    const {add, remove, size, queue} = useQueue<string>([]);
 
     const handleClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         let updatedList = [...filteredChampions];
@@ -37,16 +37,16 @@ export const Chooser = () => {
 
     const sliderHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const sliderValue = event.target.valueAsNumber;
-        if( sliderValue < lastChamps.allElements.length) {
-            const newQueue = lastChamps;
-            while (newQueue.allElements.length !== sliderValue) {
-                newQueue.dequeue();
-            }
+        let mSize = size;
+        setNoOfChamps(sliderValue);
 
-            setlastChamps(newQueue);
+        if (sliderValue < size) {
+            while (mSize > sliderValue) {
+                remove();
+                mSize--;
+            }
         }
 
-        setNoOfChamps(sliderValue);
     }
 
 
@@ -65,13 +65,15 @@ export const Chooser = () => {
             <div className='items-center justify-center py-8'>
                 <div className="md:inline-block px-2 py-2 md:align-top">
                     <button className="hover:animeate-spin bg-blue-500 py-4 w-48 h-16 hover:bg-blue-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={() => setChampion(() => {
-                        const champ = filteredChampions.length === 0 ? randomChampion() : randomChampion(filteredChampions)
-                        const newQueue = lastChamps;
-                        if (newQueue.length === noOfChamps) {
-                            newQueue.dequeue();
+                        const champ = filteredChampions.length === 0 ? randomChampion() : randomChampion(filteredChampions);
+                        if (size >= noOfChamps) {
+                            let mSize = size;
+                            while (mSize >=  noOfChamps) {
+                                remove();
+                                mSize--;
+                            }
                         }
-                        newQueue.enqueue(champ);
-                        setlastChamps(newQueue);
+                        add(champ);
 
                         return champ
                     })}>Roll a Champion!</button>
@@ -86,11 +88,11 @@ export const Chooser = () => {
             <div className='border-2 text-pretty text-bold border-rose-500 py-5 text-white rounded-lg text-2xl font-bold font-serif w- flex justify-center items-center bg-rose-500'>
                 <h2>{`Last ${noOfChamps > 1 ? noOfChamps : ''} Champ${noOfChamps > 1 ? 's' : ''}`}</h2>
             </div>
-            <div className={lastChamps.allElements.length !== 0 ? 'border-4 font-bold text-xl py-5 m-5 rounded-md justify-center flex items-center animate-appear h-1/6 w-fit border-rose-500' : ''}>
-                <ul className="ml-auto md:flex items-center justify-center h-fit w-fit">
-                {lastChamps.allElements.reverse().map(item => (
-                    <LastChampion key={item} champ={item} />
-                ))}
+            <div className={size  !== 0 ? 'border-4 font-bold text-xl py-5 m-5 rounded-md justify-center flex items-center animate-appear h-1/6 w-fit border-rose-500' : ''}>
+                <ul className="md:flex items-center justify-center">
+                {queue.slice().reverse().map((item, index) => {
+                    return <LastChampion key={item + index} champ={item} />
+                })}
             </ul>
             </div>
 
