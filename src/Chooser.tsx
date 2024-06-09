@@ -66,7 +66,7 @@ export const Chooser = () => {
                     <h1 className="  ">LoL Random</h1>
                     <h1 className="text-pink-500 md:pl-5">Champion Picker</h1>
                 </div>
-                <h3 className='text-4xl md:text-6xl font-extrabold'>{champion}</h3>
+                <h3 className='text-4xl md:text-6xl font-extrabold'>{hideChamps? "Hidden!" : champion}</h3>
             </div>
             <div className='items-center justify-center py-8'>
                 <div className="md:inline-block px-2 py-2 md:align-top">
@@ -80,8 +80,6 @@ export const Chooser = () => {
                             }
                         }
                         add(champ);
-
-                        if(hideChamps) return "Hidden!";
 
                         return champ
                     })}>Roll a Champion!</button>
