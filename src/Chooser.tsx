@@ -22,6 +22,7 @@ export const Chooser = () => {
     const [noOfChamps, setNoOfChamps] = usePersistState<number>(3, 'noOfChamps');
     const [search, setSearch] = useState('');
     const {add, remove, size, queue} = useQueue<string>([]);
+    const [hideChamps, setHideChamps] = usePersistState<boolean>(false, 'hideChamps');
 
     const handleClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         let updatedList = [...filteredChampions];
@@ -53,6 +54,11 @@ export const Chooser = () => {
     const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(event.target.value);
     }
+
+    const checkboxHandler = () => {
+        setHideChamps(!hideChamps);
+    }
+
     return (
         <div className='min-h-screen w-screen bg-black flex text-white flex-col items-center justify-center border-double border-8 scrollbar-hide overflow-y-auto'>
             <div className='flex flex-col items-center justify-center pb-10 md:pt-36 w-fit'>
@@ -75,13 +81,23 @@ export const Chooser = () => {
                         }
                         add(champ);
 
+                        if(hideChamps) return "Hidden!";
+
                         return champ
                     })}>Roll a Champion!</button>
                 </div>
 
                 <div className="pt-4 text-white font-semibold text-2xl">
-                    <label htmlFor="lastChampsSlider" className="block mb-2 text-md font-medium text-white">Number of Champs</label>
-                    <input className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-pink-500" id="lastChampsSlider" type="range" min={1} max={10} onChange={sliderHandler} step={1} defaultValue={noOfChamps} />
+                    <div>
+                        <label htmlFor="lastChampsSlider" className="block mb-2 text-md font-medium text-white">Number of Champs</label>
+                        <input className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-pink-500" id="lastChampsSlider" type="range" min={1} max={10} onChange={sliderHandler} step={1} defaultValue={noOfChamps} />
+                    </div>
+                    <br />
+                    <div>
+                        <label htmlFor="hideChamps" className="pr-4">Hide Champions?</label>
+                        <input type="checkbox" id="hideChamps" className="accent-pink-300 rounded-md hover:accent-pink-500 focus:accent-pink-700 hover:cursor-pointer" onChange={checkboxHandler} checked={hideChamps}/>
+                    </div>
+ 
                 </div>
             </div>
 
@@ -91,7 +107,7 @@ export const Chooser = () => {
             <div className={size  !== 0 ? 'border-4 font-bold text-xl py-5 m-5 rounded-md justify-center flex items-center animate-appear h-1/6 w-fit border-rose-500' : ''}>
                 <ul className="md:flex items-center justify-center">
                 {queue.slice().reverse().map((item, index) => {
-                    return <LastChampion key={item + index} champ={item} />
+                    return <LastChampion key={item + index} index={index} champ={item} hidden={hideChamps}/>
                 })}
             </ul>
             </div>
