@@ -59,6 +59,22 @@ export const Chooser = () => {
         setHideChamps(!hideChamps);
     }
 
+    const rollChampionHandler = () => {
+        setChampion(() => {
+            const champ = filteredChampions.length === 0 ? randomChampion() : randomChampion(filteredChampions);
+                        if (size >= noOfChamps) {
+                            let mSize = size;
+                            while (mSize >=  noOfChamps) {
+                                remove();
+                                mSize--;
+                            }
+                        }
+                        add(champ);
+
+                        return champ
+        })
+    }
+
     return (
         <div className='min-h-screen w-screen bg-black flex text-white flex-col items-center justify-center border-double border-8 scrollbar-hide overflow-y-auto'>
             <div className='flex flex-col items-center justify-center pb-10 md:pt-36 w-fit'>
@@ -70,19 +86,7 @@ export const Chooser = () => {
             </div>
             <div className='items-center justify-center py-8'>
                 <div className="md:inline-block px-2 py-2 md:align-top">
-                    <button className="hover:animeate-spin bg-blue-500 py-4 w-48 h-16 hover:bg-blue-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={() => setChampion(() => {
-                        const champ = filteredChampions.length === 0 ? randomChampion() : randomChampion(filteredChampions);
-                        if (size >= noOfChamps) {
-                            let mSize = size;
-                            while (mSize >=  noOfChamps) {
-                                remove();
-                                mSize--;
-                            }
-                        }
-                        add(champ);
-
-                        return champ
-                    })}>Roll a Champion!</button>
+                    <button className="hover:animeate-spin bg-blue-500 py-4 w-48 h-16 hover:bg-blue-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={rollChampionHandler}>Roll a Champion!</button>
                 </div>
 
                 <div className="pt-4 text-white font-semibold text-2xl">
