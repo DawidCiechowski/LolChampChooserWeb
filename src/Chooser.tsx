@@ -85,8 +85,8 @@ export const Chooser = () => {
                 <h3 className='text-4xl md:text-6xl font-extrabold'>{hideChamps? "Hidden!" : champion}</h3>
             </div>
             <div className='items-center justify-center py-8'>
-                <div className="md:inline-block px-2 py-2 md:align-top">
-                    <button className="hover:animeate-spin bg-blue-500 py-4 w-48 h-16 hover:bg-blue-700 text-white font-bold px-4 rounded-xl flex justify-center items-center" onClick={rollChampionHandler}>Roll a Champion!</button>
+                <div className="md:inline-block px-2 py-2 md:align-top ">
+                    <button className="hover:shadow-xl hover:shadow-blue-700/50 drop-shadow-2xl bg-blue-500 py-4 w-48 h-16 hover:bg-blue-700 text-white font-bold px-4 rounded-xl flex justify-center items-center shadow-xl shadow-blue-500/50 " onClick={rollChampionHandler}>Roll a Champion!</button>
                 </div>
 
                 <div className="pt-4 text-white font-semibold text-2xl">
@@ -103,7 +103,7 @@ export const Chooser = () => {
                 </div>
             </div>
 
-            <div className='border-2 text-pretty text-bold border-rose-500 py-5 text-white rounded-lg text-2xl font-bold font-serif w- flex justify-center items-center bg-rose-500'>
+            <div className='shadow-lg shadow-rose-500/80 border-2 text-pretty text-bold border-rose-500 py-4 my-5 text-white rounded-lg text-2xl font-bold font-serif w- flex justify-center items-center bg-rose-500'>
                 <h2>{`Last ${noOfChamps > 1 ? noOfChamps : ''} Champ${noOfChamps > 1 ? 's' : ''}`}</h2>
             </div>
             <div className={size  !== 0 ? 'border-4 font-bold text-xl py-5 m-5 rounded-md justify-center flex items-center animate-appear h-1/6 w-fit border-rose-500' : ''}>

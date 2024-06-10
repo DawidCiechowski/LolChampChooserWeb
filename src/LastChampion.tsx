@@ -36,9 +36,9 @@ export default function LastChampion({champ, hidden, index}: LastChampionProps) 
 
     return (
         <li className="inline-block w-full hover:cursor-pointer">
-            <div className={'justify-center items-center flex'} onClick={toggleVisibility}>
+            <div className={'justify-center items-center flex w-full h-96'} onClick={toggleVisibility}>
                 {
-                   (!hidden || !isHidden) && <img className="animate-appear" src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championSplash(champ)}_1.jpg`} alt="placeholder" onLoad={() =>setIsLoaded(true)} style={isLoaded ? {} : {opacity: '0%'}} />
+                   (!hidden || !isHidden) && <img className="animate-appear object-contain h-96" src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championSplash(champ)}_1.jpg`} alt="placeholder" onLoad={() =>setIsLoaded(true)} style={isLoaded ? {} : {opacity: '0%'}} />
                 }
                 {
                     (hidden && isHidden) &&
