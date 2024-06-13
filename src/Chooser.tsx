@@ -144,7 +144,10 @@ export const Chooser = () => {
                 </ol>
             </Collapsible>
 
-            <footer className="font-bold flex"><p className="text-pink-500 font-bold italic pr-1">Created by</p> Dawid Ciechowski 2024</footer>
+            <footer className="font-bold flex h-16 w-full items-center justify-center border-double border-white border-y-2">
+                <p className="text-pink-500 font-bold italic pr-1">Created by</p> 
+                Dawid Ciechowski 2024
+                </footer>
         </div>
     )
 }
