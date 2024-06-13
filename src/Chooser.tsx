@@ -76,7 +76,7 @@ export const Chooser = () => {
     }
 
     return (
-        <div className='min-h-screen w-screen bg-black flex text-white flex-col items-center justify-center border-double border-8 scrollbar-hide overflow-y-auto'>
+        <div className='min-h-screen w-screen bg-black flex text-white flex-col items-center justify-between border-double border-8'>
             <div className='flex flex-col items-center justify-center pb-10 md:pt-36 w-fit'>
                 <div className="font-bold flex justify-center items-center text-2xl md:text-5xl pb-16">
                     <h1 className="  ">LoL Random</h1>
@@ -115,8 +115,8 @@ export const Chooser = () => {
             </div>
 
             <Collapsible>
-                <div className="w-fit">
-                    <input type="text" placeholder="Search Champion..." className="text-black w-full border-4 rounded-md" value={search} onChange={searchHandler}/>
+                <div className="w-fit mx-2 my-2">
+                    <input type="text" placeholder="Search Champion..." className="text-black w-full border-4 rounded-md h-10" value={search} onChange={searchHandler}/>
                 </div>
                 <ol>
                 {champions.filter((champ) => {
@@ -131,7 +131,7 @@ export const Chooser = () => {
                     return null;
                 }).map((champ, index) => (
                     <div key={index} className='text-xl'>
-                        <div className='flex border-4 rounded-md my-2'>
+                        <div className='flex border-4 rounded-md my-2 px-2 mx-2'>
                             <div className='px-3'>
                                 {filteredChampions.includes(champ) ? <input type="checkbox" value={champ} onChange={handleClick} checked={true}/> : <input type="checkbox" value={champ} onChange={handleClick} />}
                             </div>
