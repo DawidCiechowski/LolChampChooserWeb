@@ -78,18 +78,18 @@ export const Chooser = () => {
     return (
         <div className='min-h-screen w-screen bg-black flex text-white flex-col items-center justify-between border-double border-8'>
             <div className='flex flex-col items-center justify-center pb-10 md:pt-36 w-fit'>
-                <div className="font-bold flex justify-center items-center text-2xl md:text-5xl pb-16">
+                <div className="font-bold flex justify-center items-center text-2xl md:text-5xl pb-16 font-Kanit">
                     <h1 className="  ">LoL Random</h1>
                     <h1 className="text-pink-500 md:pl-5">Champion Picker</h1>
                 </div>
-                <h3 className='text-4xl md:text-6xl font-extrabold'>{hideChamps? "Hidden!" : champion}</h3>
+                <h3 className='text-4xl md:text-6xl font-extrabold font-Kanit'>{hideChamps? "Hidden!" : champion}</h3>
             </div>
             <div className='items-center justify-center py-8'>
                 <div className="md:inline-block px-2 py-2 md:align-top ">
-                    <button className="hover:shadow-xl hover:shadow-blue-700/50 drop-shadow-2xl bg-blue-500 py-4 w-48 h-16 hover:bg-blue-700 text-white font-bold px-4 rounded-xl flex justify-center items-center shadow-xl shadow-blue-500/50 " onClick={rollChampionHandler}>Roll a Champion!</button>
+                    <button className="font-Kanit hover:shadow-xl hover:shadow-pink-700/50 drop-shadow-2xl bg-pink-500 py-4 w-48 h-16 hover:bg-pink-700 text-white font-bold px-4 rounded-xl flex justify-center items-center shadow-xl shadow-pink-500/50 " onClick={rollChampionHandler}>Roll a Champion!</button>
                 </div>
 
-                <div className="pt-4 text-white font-semibold text-2xl">
+                <div className="pt-4 text-white font-semibold text-2xl font-Kanit">
                     <div>
                         <label htmlFor="lastChampsSlider" className="block mb-2 text-md font-medium text-white">Number of Champs</label>
                         <input className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-pink-500" id="lastChampsSlider" type="range" min={1} max={10} onChange={sliderHandler} step={1} defaultValue={noOfChamps} />
@@ -103,7 +103,7 @@ export const Chooser = () => {
                 </div>
             </div>
 
-            <div className='shadow-lg shadow-rose-500/80 border-2 text-pretty text-bold border-rose-500 py-4 my-5 text-white rounded-lg text-2xl font-bold font-serif w- flex justify-center items-center bg-rose-500'>
+            <div className='shadow-lg shadow-rose-500/80 border-2 text-pretty text-bold border-rose-500 py-4 my-5 text-white rounded-lg text-2xl font-bold font-Kanit w-64 flex justify-center items-center'>
                 <h2>{`Last ${noOfChamps > 1 ? noOfChamps : ''} Champ${noOfChamps > 1 ? 's' : ''}`}</h2>
             </div>
             <div className={size  !== 0 ? 'border-4 font-bold text-xl py-5 m-5 rounded-md justify-center flex items-center animate-appear h-1/6 w-fit border-rose-500' : ''}>
@@ -145,7 +145,7 @@ export const Chooser = () => {
             </Collapsible>
 
             <footer className="font-bold flex h-16 w-full items-center justify-center border-double border-white border-y-2">
-                <p className="text-pink-500 font-bold italic pr-1">Created by</p> 
+                <p className="text-pink-500 font-bold italic pr-1 font-Kanit">Created by</p> 
                 Dawid Ciechowski 2024
                 </footer>
         </div>

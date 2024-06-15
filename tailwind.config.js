@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        Kanit: ["Kanit"]
+      },
       keyframes: {
         lol: {
           "0%": {opacity: "0"},
