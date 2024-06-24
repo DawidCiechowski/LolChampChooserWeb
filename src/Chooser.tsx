@@ -106,7 +106,7 @@ export const Chooser = () => {
             <div className='shadow-lg shadow-rose-500/80 border-2 text-pretty text-bold border-rose-500 py-4 my-5 text-white rounded-lg text-2xl font-bold font-Kanit w-64 flex justify-center items-center'>
                 <h2>{`Last ${noOfChamps > 1 ? noOfChamps : ''} Champ${noOfChamps > 1 ? 's' : ''}`}</h2>
             </div>
-            <div className={size  !== 0 ? 'border-4 font-bold text-xl py-5 m-5 rounded-md justify-center flex items-center animate-appear h-1/6 w-fit border-rose-500' : ''}>
+            <div className={'font-bold text-xl py-5 m-5 rounded-md justify-center flex items-center animate-appear h-1/6 w-fit'}>
                 <ul className="md:flex items-center justify-center">
                 {queue.slice().reverse().map((item, index) => {
                     return <LastChampion key={item + index} index={index} champ={item} hidden={hideChamps}/>
