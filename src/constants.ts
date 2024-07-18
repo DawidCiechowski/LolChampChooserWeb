@@ -9,6 +9,7 @@ Annie
 Aphelios
 Ashe
 Aurelion Sol
+Aurora
 Azir
 Bard
 Bel'veth
