@@ -1,5 +1,4 @@
 import { useState } from "react";
-import usePersistState from "./usePersistState";
 
 
 const championSplash = (item: string) => {
@@ -27,23 +26,12 @@ interface LastChampionProps {
 
 export default function LastChampion({champ, hidden, index}: LastChampionProps) {
     const [isLoaded, setIsLoaded] = useState(false);
-    const [isHidden, setIsHidden] = usePersistState(hidden, `${champ}${index}`);
-
-    const toggleVisibility = () => {
-        if (!hidden) return;
-        setIsHidden(!isHidden);
-    }
 
     return (
-        <li className="inline-block w-full hover:cursor-pointer mx-2">
-            <div className={'justify-center items-center flex w-full h-auto border-4 border-rose-500 rounded-md'} onClick={toggleVisibility}>
+        <li className={`inline-block w-full hover:cursor-pointer mx-2`}>
+            <div className={`justify-center items-center flex w-full h-auto border-4 border-rose-500 rounded-md`}>
                 {
-                   (!hidden || !isHidden) 
-                   && <img className={"object-contain h-96 ease-in animate-appear"} src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championSplash(champ)}_1.jpg`} alt="placeholder" onLoad={() => {setIsLoaded(true)}} style={isLoaded ? {} : {opacity: '0%'}} />
-                }
-                {
-                    (hidden && isHidden) &&
-                    <div className="w-fit h-48 flex items-center justify-center p-12">I'm hidden!<br/>Click me to reveal!</div>
+                    <img className={`object-contain h-96 ease-in animate-appear ${hidden ? 'transition brightness-0 hover:brightness-100' : ''}`} src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championSplash(champ)}_1.jpg`} alt="placeholder" onLoad={() => {setIsLoaded(true)}} style={isLoaded ? {} : {opacity: '0%'}} />
                 }
             </div>
         </li>

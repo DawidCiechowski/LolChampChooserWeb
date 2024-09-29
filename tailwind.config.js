@@ -14,14 +14,19 @@ module.exports = {
         lol: {
           "0%": {opacity: "0"},
           "100%": {opacity: "1"},
+        },
+        brighten: {
+          "0%": {filter: "brightness(0)"},
+          "100%": {filter: "brightness(1)"},
         }
       },
       animation: {
-        "appear": 'lol 2s ease-in'
+        "appear": 'lol 2s ease-in',
+        "brighten": "brighten .5s"
       }
     },
   },
   plugins: [
-    require('tailwind-scrollbar-hide')
+    require('tailwind-scrollbar-hide'),
   ],
 }
