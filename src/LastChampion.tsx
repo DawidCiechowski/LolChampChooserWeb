@@ -15,7 +15,8 @@ const championSplash = (item: string) => {
         ["Dr.Mundo", "DrMundo"]
     ]);
 
-    return exceptions.get(item) !== undefined ? exceptions.get(item) : item
+    const champ = exceptions.get(item)
+    return champ !== undefined ? champ : item
 }
 
 interface LastChampionProps {

@@ -5,5 +5,9 @@
 
 
 
-
+@layer base {
+    body {
+        @apply min-h-screen bg-gradient-to-b from-black to-slate-950
+    }
+}
 
