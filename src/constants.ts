@@ -4,6 +4,7 @@ Akali
 Akshan
 Alistar
 Amumu
+Ambessa
 Anivia
 Annie
 Aphelios

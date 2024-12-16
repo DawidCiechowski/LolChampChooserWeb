@@ -4,4 +4,6 @@ Generate a random champion from a list of available ones and filter out ones you
 
 ## Last Update for Champion List
 
-2nd June 2024
+16th December 2024
+
+Champion: Ambessa
