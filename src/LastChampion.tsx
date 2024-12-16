@@ -29,12 +29,29 @@ export default function LastChampion({champ, hidden, index}: LastChampionProps) 
     const [isLoaded, setIsLoaded] = useState(false);
 
     return (
-        <li className={`inline-block w-full hover:cursor-pointer mx-2`}>
-            <div className={`justify-center items-center flex w-full h-auto border-4 border-rose-500 rounded-md`}>
-                {
-                    <img className={`object-contain h-96 ease-in animate-appear ${hidden ? 'transition brightness-0 hover:brightness-100' : ''}`} src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championSplash(champ)}_1.jpg`} alt="placeholder" onLoad={() => {setIsLoaded(true)}} style={isLoaded ? {} : {opacity: '0%'}} />
-                }
-            </div>
-        </li>
-    )
+      <li className={`inline-block w-full hover:cursor-pointer mx-2`}>
+        <div
+          className={`justify-center items-center flex flex-col w-full h-auto border-4 border-rose-500 rounded-md`}
+        >
+          {
+            <img
+              className={`object-contain h-96 ease-in animate-appear ${
+                hidden ? "transition brightness-0 hover:brightness-100" : ""
+              }`}
+              src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championSplash(
+                champ
+              )}_1.jpg`}
+              alt="placeholder"
+              onLoad={() => {
+                setIsLoaded(true);
+              }}
+              style={isLoaded ? {} : { opacity: "0%" }}
+            />
+          }
+          <p className={`ease-in animate-appear ${
+                hidden ? "transition opacity-0 hover:opacity-100" : ""
+              }`}>{champ}</p>
+        </div>
+      </li>
+    );
 }
