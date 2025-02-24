@@ -6,6 +6,6 @@ Head to: [Lol Champion Chooser Website](https://www.lolchampionchooser.com) to u
 
 ## Last Update for Champion List
 
-16th December 2024
+24/02/2024
 
-Champion: Ambessa
+Champion: Mel
